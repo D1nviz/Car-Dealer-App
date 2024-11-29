@@ -36,12 +36,10 @@ export async function generateStaticParams() {
 export default async function ResultPage({ params }: ResultPageProps) {
   const { makeId, year } = await params;
 
-  let modelsResponse: VehicleModelsResponse | null = null;
-  try {
-    modelsResponse = await fetchVehicleModels(makeId, year);
-  } catch (error) {
-    console.error('Error fetching vehicle models:', error);
-  }
+  const modelsResponse: VehicleModelsResponse = await fetchVehicleModels(
+    makeId,
+    year
+  );
 
   const vehicleMakes: VehicleMake[] = await fetchVehicleMakes();
 
